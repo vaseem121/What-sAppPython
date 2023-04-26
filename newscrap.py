@@ -39,30 +39,30 @@ def userList(driver,i,userId):
 			profileContactData = driver.find_element_by_class_name("_1xFRo").get_attribute('innerHTML')
 			soupProfileContact = bs(profileContactData,"html.parser")
 			print(">>>> Contact Profile Data >>>>",profileContactData)
-		# 	try:
-		# 		statusData = driver.find_element_by_xpath("//span[@title='{}']".format('online')).get_attribute('title')
-		# 		if statusData == 'online':
-		# 			online_status = statusData
-		# 		else:
-		# 			online_status = 'offline'
-		# 	except NoSuchElementException:
-		# 		online_status = 'offline'
-		# 	try:
-		# 		mobileData = driver.find_element_by_xpath("/html/body/div[1]/div/div/div[5]/div").get_attribute('innerHTML')
-		# 		soupsss = bs(mobileData,"html.parser")
-		# 		mobile = soupsss.find("div",{"class":"hY_ET"})['data-id']
-		# 		splitOne = re.split('_',mobile)
-		# 		splitTwo = re.split('@',splitOne[1])
-		# 		finalMobile = splitTwo[0]
-		# 	except NoSuchElementException:
-		# 		print(">>>> No Element Found")
-		# except NoSuchElementException:
-		# 	online_status = 'offline'
+			try:
+				statusData = driver.find_element_by_xpath("//span[@title='{}']".format('online')).get_attribute('title')
+				if statusData == 'online':
+					online_status = statusData
+				else:
+					online_status = 'offline'
+			except NoSuchElementException:
+				online_status = 'offline'
+			try:
+				mobileData = driver.find_element_by_xpath("/html/body/div[1]/div/div/div[5]/div").get_attribute('innerHTML')
+				soupsss = bs(mobileData,"html.parser")
+				mobile = soupsss.find("div",{"class":"hY_ET"})['data-id']
+				splitOne = re.split('_',mobile)
+				splitTwo = re.split('@',splitOne[1])
+				finalMobile = splitTwo[0]
+			except NoSuchElementException:
+				print(">>>> No Element Found")
+		except NoSuchElementException:
+			online_status = 'offline'
 	except NoSuchElementException:
 		contact_photo = ''
-	# data.append({'contact_name': contactName,'contact_photo' : contact_photo,'user_id': userId,'online_status': online_status,'contact_phone' : finalMobile })
-	# fr.saveContactList(data,i) 
-	# print(">>>> After Login",data)
+	data.append({'contact_name': contactName,'contact_photo' : contact_photo,'user_id': userId,'online_status': online_status,'contact_phone' : finalMobile })
+	fr.saveContactList(data,i) 
+	print(">>>> After Login",data)
 
 def userProfileData(driver):
 	userData = []
